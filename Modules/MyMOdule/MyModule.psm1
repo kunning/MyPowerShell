@@ -1,25 +1,130 @@
-$TeleoptiDebug = "$Env:Teleopti\.debug-Setup"
-$TeleoptiWFM = "$Env:Teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web\WFM"
-$TeleoptiStyleguide = "$Env:GitRepo\styleguide"
-$TeleoptiVpn = "typhoon","vpn"
+$Teleopti = "C:\teleopti\"
+$TeleoptiDebug = "C:\teleopti\.debug-Setup"
+$TeleoptiWFM = "C:\teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web\WFM"
+$TeleoptiVpn = "vpn"
 $TeleoptiDoor = "$Env:Door"
 
-$RunEmacs = " ${env:ProgramFiles(x86)}\GNU\emacs\bin\runemacs.exe"
-$RunChrome = " ${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe"
-$RunMsbuild = " ${env:ProgramFiles(x86)}\MSBuild\14.0\Bin\MSBuild.exe"
+$ST = "C:\Program Files\Sublime Text 3\sublime_text.exe"
+$VS = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"
+$HG = "C:\Program Files\TortoiseHg\thgw.exe"
+$VSProcessName = "devenv"
+$IISExpressProcessName = "iisexpress"
+$PS = "C:\jianfeng\PhpStorm 10.0.3\bin\PhpStorm.exe"
+$SSMS = "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
+$Chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 
+function Start-Up{
+    Write-Host "
+    Good to see you!
+    
+    Programs:    
+        st - 'Launch sublime'
+        vs - 'Launch visual studio'
+        kvs - 'Kill visual studio'
+        rvs - 'Restart visual studio'
+        kis - 'Kill IIS Express'
+        sql - 'Luanch sql server management studio'
+        hgw - 'Launch TortoiseHg Workbench'
+        pst - 'Launch phpstorm'
 
-$TeleoptiNodeBuildTarget = "$TeleoptiWFM\..\.node\node.targets"
-$TeleoptiSln = "$TeleoptiDebug\..\CruiseControl.sln"
-$TeleoptiWeb = "$TeleoptiWFM\..\Teleopti.Ccc.Web.csproj"
+    Folders: 
+        t - 'Teleopti Root'
+        debug - 'Teleopti Debug'
+        wfm - 'Teleopti WFM'
 
-function Start-Emacs {
-    if ($args.Length -eq 0) {
-        Start-Process $RunEmacs
+    NetWork:
+        vpn - 'Enable Teleopti VPN'
+        vpn2 - 'Enable Teleopti VPN2'
+        vpn/f - 'Disable Teleopti VPN'
+
+    Batchs:
+        restore - 'Teleopti Restore to Local'
+        infratest - 'Teleopti Teleopti InfratestConfig'
+        fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
+        gruntcmd - 'Grunt cmd'
+
+    Website:
+        dumpling - 'Dumpling Board'
+        devbuild - 'Teleopti Devbuild'
+        styleguide - 'StyleGuide'
+        intranet - 'Intranet'
+        rnd - 'IntranetRND'
+        slack - 'Slack'
+        mail - 'Mail'
+        azure - 'Microsoft Azure Site'
+
+    Tools: 
+        dict - 'Youdao dict'
+
+    Search:
+        baidu - 'Baidu'
+        bing - 'Bing'
+        google - 'Google'
+        stackoverflow - 'StackOverflow'
+        msdn - 'MSDN'
+
+    Gate:
+        gate - 'Open Gate'
+    "
+}
+
+Start-Up
+
+function Start-ShowCommands{
+    Start-Up
+}
+
+function Start-ST {
+    Start-Process $ST
+}
+
+function Start-VS {
+    Start-Process $VS
+}
+
+function Start-KillVS {
+    $process = Get-VSProcess
+    if($process.Id){
+        Stop-Process $process.Id
     } else {
-        $filename = $args[0]
-        Start-Process $RunEmacs -ArgumentList "--find $filename"
+        Write-Host "Visual Studio has not started"
     }
+}
+
+function Get-VSProcess{
+    return Get-Process $VSProcessName
+}
+
+function Start-RestartVS {
+    Start-KillVS
+    Start-VS
+}
+
+function Get-IISExpressProcess{
+    return Get-Process $IISExpressProcessName
+}
+
+function Start-KillIISExpress {
+    $process = Get-IISExpressProcess
+    if($process.Id){
+        Stop-Process $process.Id
+    }
+}
+
+function Start-HG {
+    Start-Process $HG
+}
+
+function Start-PS {
+    Start-Process $PS
+}
+
+function Start-SSMS {
+    Start-Process $SSMS
+}
+
+function Enter-Teleopti {
+    Set-Location $Teleopti
 }
 
 function Enter-TeleoptiDebug {
@@ -30,52 +135,12 @@ function Enter-TeleoptiWFM {
     Set-Location $TeleoptiWFM
 }
 
-function Enter-TeleoptiStyleguide {
-    Set-Location $TeleoptiStyleguide
-}
-
-function Enter-Desktop {
-	Set-Location ([environment]::GetFolderPath("Desktop"))
-}
-
-function Enter-MyDocuments {
-	Set-Location ([environment]::GetFolderPath("MyDocument"))
-}
-
-function Read-ConsoleColor {
-	return @{
-		Bg = $host.ui.rawui.BackgroundColor;
-		Fg = $host.ui.rawui.ForegroundColor;
-	}
-}
-
-function Update-ConsoleColor($colors) {
-	$host.ui.rawui.BackgroundColor = $colors.Bg
-    $host.ui.rawui.ForegroundColor = $colors.Fg
-}
-
-function Open-DailyWorkbench {
-	$workbenchDir = Join-Path ([environment]::GetFolderPath("MyDocument")) "Workbench"
-	$month = [DateTime]::Today.ToString("MMM")
-	$day = [DateTime]::Today.ToString("yyyy-MM-dd")
-	$container = Join-Path $workbenchDir $month
-
-	if (-not (Test-Path $container)) {
-		New-Item -ItemType Directory -Force -Path $container
-	}
-
-	$dailyWork = Join-Path $container "$day.org"
-	Start-Emacs $dailyWork
-}
-
 function Get-TeleoptiVpn {
     $interfaceAlias = Get-NetIPAddress | ForEach-Object { $_.InterfaceAlias }
-    foreach ($item in $TeleoptiVpn) {
-        if ($interfaceAlias -contains $item) {
-            Write-Host "Current vpn connection is $item."
-            return $item;
-        }
+    if ($interfaceAlias -contains $TeleoptiVpn) {
+        return $TeleoptiVpn;
     }
+
     return;
 }
 
@@ -89,179 +154,134 @@ function Disable-TeleoptiVpn {
 
 function Enable-TeleoptiVpn {
     $vpn = Get-TeleoptiVpn
-
+    
     if ($vpn -eq $null) {
-        Write-Host "No vpn connection is found."
-        $retry = 10;
-        while ($retry -gt 0) {
-            $idx = $retry % $TeleoptiVpn.Length
-            $vpn =  $TeleoptiVpn[$idx]
-            Write-Host "Attempting to connect to $vpn..."
-
-            $p = Start-Process rasdial $vpn -PassThru -Wait
-
-            if ($p.ExitCode -eq 0) {
-                Write-Host "Connected to $vpn."
-                return $vpn
-            } else {
-                Write-Host "Cannot connect to $vpn."
-                $retry -= 1
-            }
-        }
+        Write-Host "Attempting to connect to $TeleoptiVpn..."
+        rasdial $TeleoptiVpn
     } else {
         Write-Host "Connected to $vpn."
-        return $vpn
     }
+}
 
-    Write-Error "Cannot connect to $TeleoptiVpns within the retry limit."
+function Start-TeleoptiInfratestConfig {
+    Write-Host "Starting Teleopti InfratestConfig..."
+    & "$TeleoptiDebug\InfratestConfig.bat" -Wait
+}
+
+function Start-TeleoptiFixMyConfigFlow {
+    Write-Host "Starting Teleopti FixMyConfigFlow..."
+    & "$TeleoptiDebug\FixMyConfigFlow.bat" -Wait
 }
 
 function Start-TeleoptiRestoreToLocal {
-    $vpn = Enable-TeleoptiVpn
-	if ($vpn -eq $null) {
-		Write-Error "Aborted! Cannot establish VPN connection."
-		return
-	}
-    Write-Host "Starting Teleopti Restore To Local..."
-
-	$originalColors = Read-ConsoleColor
-    & "$TeleoptiDebug\Restore to Local.bat"
-
-	Update-ConsoleColor($originalColors)
+    Enable-TeleoptiVpn
+    Write-Host "Started Teleopti Restore To Local..."
+    $p = Start-Process "$TeleoptiDebug\Restore to Local.bat"
 }
 
-function New-TeleoptiChallenger {
-    $vpn = Enable-TeleoptiVpn
-	if ($vpn -eq $null) {
-		Write-Error "Aborted! Cannot establish VPN connection."
-		return
-	}
+function Start-GruntCommandWindow {
+    Set-Location $TeleoptiWFM
+    Write-Host "Started Grunt cmd..."
+    Start-Process cmd "grunt --force"
+}
 
+function New-Dumpling {
+    Enable-TeleoptiVpn
     $url = "http://challenger:8080/Kanban/#/board/0"
-    & $RunChrome $url
-    Write-Host "New challenger started in Chrome."
+    & $Chrome $url
+    Write-Host "Dumpling opened in Chrome."
 }
 
 function New-DevBuild {
-    $vpn = Enable-TeleoptiVpn
-	if ($vpn -eq $null) {
-		Write-Error "Aborted! Cannot establish VPN connection."
-		return
-	}
-
-    $url = "http://devbuild01.toptinet.teleopti.com/project.html?projectId=TeleoptiWFM&tab=projectOverview"
-    & $RunChrome $url
-    Write-Host "New devbuild started in Chrome."
+    Enable-TeleoptiVpn
+    $url = "http://buildsrv01/"
+    & $Chrome $url
+    Write-Host "Devbuild opened in Chrome."
 }
 
-function New-GitHub {
-    Disable-TeleoptiVpn
-    $url = "https://github.com"
-    & $RunChrome $url
-    Write-Host "Github started in Chrome."
+function New-StyleGuide {
+    $url = "http://teleopti.github.io/styleguide/styleguide/index.html"
+    & $Chrome $url
+    Write-Host "StyleGuide opened in Chrome."
 }
 
-function Start-TeleoptiSourcePull {
-	$vpn = Enable-TeleoptiVpn
-	if ($vpn -eq $null) {
-		Write-Error "Aborted! Cannot establish VPN connection."
-		return
-	}
-	Enter-TeleoptiWFM
-	hg pull
+function New-Intranet {
+    $url = "https://intranet.teleopti.com/"
+    & $Chrome $url
+    Write-Host "Intranet opened in Chrome."
 }
 
-
-function open-file($path) {
-	Start-Process explorer.exe -ArgumentList "/select,$path"
+function New-IntranetRND {
+    $url = "https://intranet.teleopti.com/teleopticcc/rnd~2"
+    & $Chrome $url
+    Write-Host "Intranet RND opened in Chrome."
 }
 
-function Select-File {
-	Begin {
-		$paths = @()
-		foreach ($p in $args) {
-			if ([string]::IsNullOrWhiteSpace($p)) {
-				return
-			}
-			$path = Resolve-Path $p
-			$paths += "$path"
-			open-file -path $path
-		}
-	}
-	Process {
-		if ($_ -eq $null) {
-			return
-		}
-		$path = Resolve-Path $_
-		$paths += "$path"
-		open-file -path $path
-	}
-	End {
-		return $paths
-	}
+function New-Mail {
+    $url = "http://webmail.teleopti.com/"
+    & $Chrome $url
+    Write-Host "Mail opened in Chrome."
 }
 
-function Find-HgFile {
-	Enter-TeleoptiWFM
-	if ($args.Length -eq 0) {
-		return
-	}
-	$pattern = $args[0]
-	hg file | Select-String -pattern $pattern | ForEach { Resolve-Path $_ }
+function New-Azure {
+    $url = "https://portal.azure.com/"
+    & $Chrome $url
+    Write-Host "Microsoft Azure site opened in Chrome."
 }
 
-function Hide-TeleoptiNodeBuild {
-	(Get-Content $TeleoptiNodeBuildTarget) -replace '(<Exec\s.*?/>)','<!--$1-->' | Set-Content -Path $TeleoptiNodeBuildTarget
-	Write-Host "Muted Node-related Execs in Teleopti Build."
+function New-Slack {
+    $url = "https://teleopti.slack.com/messages/"
+    & $Chrome $url
+    Write-Host "Slack opened in Chrome."
 }
 
-function Show-TeleoptiNodeBuild {
-	(Get-Content $TeleoptiNodeBuildTarget)  -replace '<!--(<Exec.*?/>)-->','$1' | Set-Content -Path $TeleoptiNodeBuildTarget
-	Write-Host "Restored Node-related Execs in Teleopti Build."
+function New-YoudaoDict {
+    $url = "http://dict.youdao.com/"
+    & $Chrome $url
+    Write-Host "Youdao dict opened in Chrome."
 }
 
-function Start-TeleoptiBuild {
-	if ($args.Length -eq 0) {
-		$startProj = $TeleoptiSln
-	} else {
-		$startProj = $args[0]
-	}
-
-	$originalColors = Read-ConsoleColor
-	Hide-TeleoptiNodeBuild
-	Write-Host "Start building ..."
-	& ($RunMsbuild) /target:build $startProj
-	Show-TeleoptiNodeBuild
-	Update-ConsoleColor($originalColors)
+function New-Baidu {
+    $url = "https://www.baidu.com/"
+    & $Chrome $url
+    Write-Host "Baidu opened in Chrome."
 }
 
-function Search-Google {
-	& $RunChrome "https://www.google.com/search?q=$args"
+function New-Bing {
+    $url = "http://cn.bing.com/?intlF=/"
+    & $Chrome $url
+    Write-Host "Bing opened in Chrome."
 }
 
-
-function Search-Bing {
-	& $RunChrome "https://www.bing.com/search?q=$args"
+function New-Google {
+    Enable-TeleoptiVpn
+    $url = "https://www.google.se/"
+    & $Chrome $url
+    Write-Host "Google opened in Chrome."
 }
 
-function Open-Door {
-	wget $TeleoptiDoor
+function New-StackOverflow {
+    $url = "http://stackoverflow.com/"
+    & $Chrome $url
+    Write-Host "StackOverflow opened in Chrome."
 }
 
+function New-MSDN {
+    $url = "https://msdn.microsoft.com/en-us/"
+    & $Chrome $url
+    Write-Host "MSDN opened in Chrome."
+}
+
+function Start-OpenGate {
+    & wget $TeleoptiDoor
+    Write-Host "Gate is opened"
+}
 
 Export-ModuleMember -Function 'Start-*'
+Export-ModuleMember -Function 'Stop-*'
 Export-ModuleMember -Function 'Enter-*'
 Export-ModuleMember -Function 'Enable-*'
 Export-ModuleMember -Function 'Disable-*'
 Export-ModuleMember -Function 'Get-TeleoptiVpn'
 Export-ModuleMember -Function 'New-*'
-Export-ModuleMember -Function 'Select-*'
-Export-ModuleMember -Function 'Find-*'
-Export-ModuleMember -Function 'Search-*'
-Export-ModuleMember -Function 'hide-*'
-Export-ModuleMember -Function 'Show-*'
-Export-ModuleMember -Function 'Open-*'
-Export-ModuleMember -Function 'Read-*'
-Export-ModuleMember -Function 'Update-*'
 Export-ModuleMember -Variable 'Teleopti*'
-Export-ModuleMember -Variable 'Run*'
