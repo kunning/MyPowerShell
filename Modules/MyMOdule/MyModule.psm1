@@ -1,6 +1,9 @@
 $Teleopti = "C:\teleopti\"
 $TeleoptiDebug = "C:\teleopti\.debug-Setup"
 $TeleoptiWFM = "C:\teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web\WFM"
+$StyleGuideHalomaple = "C:\styleguide-halomaple"
+$StyleGuideTeleopti = "C:\styleguide-teleopti"
+$PowerShellFolder = "C:\Users\jianfengz\Documents\WindowsPowerShell"
 $TeleoptiVpn = "vpn"
 $TeleoptiDoor = "$Env:Door"
 
@@ -8,6 +11,7 @@ $ST = "C:\Program Files\Sublime Text 3\sublime_text.exe"
 $VS = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"
 $HG = "C:\Program Files\TortoiseHg\thgw.exe"
 $VSProcessName = "devenv"
+$STProcessName = "sublime_text"
 $IISExpressProcessName = "iisexpress"
 $PS = "C:\jianfeng\PhpStorm 10.0.3\bin\PhpStorm.exe"
 $SSMS = "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
@@ -17,8 +21,13 @@ function Start-Up{
     Write-Host "
     Good to see you!
     
-    Programs:    
+    Programs:
         st - 'Launch sublime'
+        st-c - 'Launch sublime and open current folder'
+        st-t - 'Launch sublime and open Teleopti folder'
+        st-styleh - 'Launch sublime and open styleguide-halomaple folder'
+        st-stylet - 'Launch sublime and open styleguide-teleopti folder'
+        kst - 'Kill sublime text'
         vs - 'Launch visual studio'
         kvs - 'Kill visual studio'
         rvs - 'Restart visual studio'
@@ -31,6 +40,13 @@ function Start-Up{
         t - 'Teleopti Root'
         debug - 'Teleopti Debug'
         wfm - 'Teleopti WFM'
+        styleh - 'StyleGuide Halomaple'
+        stylet - 'StyleGuide Teleopti'
+        psfolder - 'My PowerShell Folder'
+
+    Folders Paths:
+        styleh-p - 'StyleGuide Halomaple Path'
+        stylet-p - 'StyleGuide Teleopti Path'
 
     NetWork:
         vpn - 'Enable Teleopti VPN'
@@ -65,6 +81,10 @@ function Start-Up{
 
     Gate:
         gate - 'Open Gate'
+
+    PS:
+        commands - 'Show Commands'
+        update - 'Update Module'
     "
 }
 
@@ -74,8 +94,44 @@ function Start-ShowCommands{
     Start-Up
 }
 
+function Update-MyModule {
+    Remove-Module MyModule
+    Import-Module MyModule
+
+    Write-Host "Module updated!"
+}
+
 function Start-ST {
-    Start-Process $ST
+    Start-Process $ST 
+}
+
+function Start-STCurrentFolder{
+    Start-Process $ST $pwd
+}
+
+function Start-STTeleopti {
+    Start-Process $ST $Teleopti
+}
+
+function Start-STStyleGuideHalomaple {
+    Start-Process $ST $StyleGuideHalomaple
+}
+
+function Start-STStyleGuideTeleopti {
+    Start-Process $ST $StyleGuideTeleopti
+}
+
+function Start-KillST{
+    $process = Get-STProcess
+    if($process.Id){
+        Stop-Process $process.Id
+    } else {
+        Write-Host "Visual Studio has not started"
+    }
+}
+
+function Get-STProcess{
+    return Get-Process $STProcessName
 }
 
 function Start-VS {
@@ -133,6 +189,18 @@ function Enter-TeleoptiDebug {
 
 function Enter-TeleoptiWFM {
     Set-Location $TeleoptiWFM
+}
+
+function Enter-StyleGuideHalomaple {
+    Set-Location $StyleGuideHalomaple
+}
+
+function Enter-StyleGuideTeleopti {
+    Set-Location $StyleGuideTeleopti
+}
+
+function Enter-PowerShellFolder {
+    Set-Location $PowerShellFolder
 }
 
 function Get-TeleoptiVpn {
@@ -282,6 +350,7 @@ Export-ModuleMember -Function 'Stop-*'
 Export-ModuleMember -Function 'Enter-*'
 Export-ModuleMember -Function 'Enable-*'
 Export-ModuleMember -Function 'Disable-*'
+Export-ModuleMember -Function 'Update-*'
 Export-ModuleMember -Function 'Get-TeleoptiVpn'
 Export-ModuleMember -Function 'New-*'
 Export-ModuleMember -Variable 'Teleopti*'
