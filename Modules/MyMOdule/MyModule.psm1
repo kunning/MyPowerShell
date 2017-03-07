@@ -130,8 +130,9 @@ function Start-KillST{
     $process = Get-STProcess
     if($process.Id){
         Stop-Process $process.Id
+        Write-Host "Sublime Text is terminated"
     } else {
-        Write-Host "Visual Studio has not started"
+        Write-Host "Sublime Text has not started"
     }
 }
 
@@ -147,6 +148,7 @@ function Start-KillVS {
     $process = Get-VSProcess
     if($process.Id){
         Stop-Process $process.Id
+        Write-Host "Visual Studio is terminated"
     } else {
         Write-Host "Visual Studio has not started"
     }
@@ -169,6 +171,9 @@ function Start-KillIISExpress {
     $process = Get-IISExpressProcess
     if($process.Id){
         Stop-Process $process.Id
+        Write-Host "IIS Express is terminated"
+    } else {
+        Write-Host "IIS Express has not started"
     }
 }
 
@@ -192,6 +197,9 @@ function Start-KillShadowsocks {
     $process = Get-Process $ShadowsocksProcessName
     if($process.Id){
         Stop-Process $process.Id
+        Write-Host "Shadowsocks is terminated"
+    } else {
+        Write-Host "Shadowsocks has not started"
     }
 }
 
