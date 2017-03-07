@@ -16,6 +16,8 @@ New-Alias -name kis -value Start-KillIISExpress -description "Kill IIS Express" 
 New-Alias -name sql -value Start-SSMS -description "Launch sql server management studio" -option ReadOnly
 New-Alias -name hgw -value Start-HG -description "Launch TortoiseHg Workbench" -option ReadOnly
 New-Alias -name pst -value Start-PS -description "Launch phpstorm" -option ReadOnly
+New-Alias -name ss -value Start-Shadowsocks -description "Launch Shadowsocks" -option ReadOnly
+New-Alias -name kss -value Start-KillShadowsocks -description "Kill Shadowsocks" -option ReadOnly
 
 New-Alias -name t -value Enter-Teleopti -description "Teleopti Root" -option ReadOnly
 New-Alias -name debug -value Enter-TeleoptiDebug -description "Teleopti Debug" -option ReadOnly
@@ -45,6 +47,7 @@ New-Alias -name rnd -value New-IntranetRND -description "IntranetRND" -option Re
 New-Alias -name slack -value New-Slack -description "Slack" -option ReadOnly
 New-Alias -name mail -value New-Mail -description "Mail" -option ReadOnly
 New-Alias -name azure -value New-Azure -description "Azure" -option ReadOnly
+New-Alias -name github -value New-Github -description "Github" -option ReadOnly
 
 New-Alias -name dict -value New-YoudaoDict -description "Youdao dict" -option ReadOnly
 

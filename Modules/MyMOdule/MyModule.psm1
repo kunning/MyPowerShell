@@ -16,6 +16,8 @@ $IISExpressProcessName = "iisexpress"
 $PS = "C:\jianfeng\PhpStorm 10.0.3\bin\PhpStorm.exe"
 $SSMS = "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
 $Chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+$Shadowsocks = "C:\jianfeng\Shadowsocks.exe"
+$ShadowsocksProcessName = "Shadowsocks"
 
 function Start-Up{
     Write-Host "
@@ -35,6 +37,8 @@ function Start-Up{
         sql - 'Luanch sql server management studio'
         hgw - 'Launch TortoiseHg Workbench'
         pst - 'Launch phpstorm'
+        ss - 'Shadowsocks'
+        kss - 'Kill Shadowsocks'
 
     Folders: 
         t - 'Teleopti Root'
@@ -68,6 +72,7 @@ function Start-Up{
         slack - 'Slack'
         mail - 'Mail'
         azure - 'Microsoft Azure Site'
+        github - 'Github'
 
     Tools: 
         dict - 'Youdao dict'
@@ -177,6 +182,17 @@ function Start-PS {
 
 function Start-SSMS {
     Start-Process $SSMS
+}
+
+function Start-Shadowsocks {
+    Start-Process $Shadowsocks
+}
+
+function Start-KillShadowsocks {
+    $process = Get-Process $ShadowsocksProcessName
+    if($process.Id){
+        Stop-Process $process.Id
+    }
 }
 
 function Enter-Teleopti {
@@ -295,6 +311,12 @@ function New-Azure {
     $url = "https://portal.azure.com/"
     & $Chrome $url
     Write-Host "Microsoft Azure site opened in Chrome."
+}
+
+function New-Github {
+    $url = "https://github.com/"
+    & $Chrome $url
+    Write-Host "Github opened in Chrome."
 }
 
 function New-Slack {
