@@ -344,7 +344,7 @@ function New-Bing {
 }
 
 function New-Google {
-    $url = "https://www.google.se/"
+    $url = "https://www.google.com/"
     & $Chrome $url
     Write-Host "Google opened in Chrome."
 }
