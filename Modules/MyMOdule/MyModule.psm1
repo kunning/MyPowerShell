@@ -344,7 +344,6 @@ function New-Bing {
 }
 
 function New-Google {
-    Enable-TeleoptiVpn
     $url = "https://www.google.se/"
     & $Chrome $url
     Write-Host "Google opened in Chrome."
