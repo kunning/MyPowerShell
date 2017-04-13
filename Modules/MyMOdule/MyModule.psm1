@@ -64,8 +64,8 @@ function Start-Up{
         gruntcmd - 'Grunt cmd'
 
     Website:
-        dumpling - 'Dumpling Board'
-        devbuild - 'Teleopti Devbuild'
+        kanban - 'Kanban Board'
+        buildsvr - 'Teleopti Build Server'
         styleguide - 'StyleGuide'
         intranet - 'Intranet'
         rnd - 'IntranetRND'
@@ -277,18 +277,20 @@ function Start-GruntCommandWindow {
     Start-Process cmd "grunt --force"
 }
 
-function New-Dumpling {
+function New-Kanban {
     Enable-TeleoptiVpn
-    $url = "http://challenger:8080/Kanban/#/board/0"
-    & $Chrome $url
-    Write-Host "Dumpling opened in Chrome."
+    $url1 = "http://rndkanban/board/#/team/8"
+    $url2 = "http://rndkanban/board/#/"
+    & $Chrome $url1
+    & $Chrome $url2
+    Write-Host "Kanban  opened in Chrome."
 }
 
-function New-DevBuild {
+function New-BuildServer {
     Enable-TeleoptiVpn
-    $url = "http://buildsrv01/"
+    $url = "http://buildsrv01/overview.html"
     & $Chrome $url
-    Write-Host "Devbuild opened in Chrome."
+    Write-Host "BuildServer opened in Chrome."
 }
 
 function New-StyleGuide {

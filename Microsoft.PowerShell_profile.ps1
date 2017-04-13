@@ -38,8 +38,8 @@ New-Alias -name fixconfig -value  Start-TeleoptiFixMyConfigFlow -description "Te
 
 New-Alias -name gruntcmd -value  Start-GruntCommandWindow -description "Grunt cmd" -option ReadOnly
 
-New-Alias -name dumpling -value New-Dumpling -description "Dumpling Board" -option ReadOnly
-New-Alias -name devbuild -value New-DevBuild -description "Teleopti Devbuild" -option ReadOnly
+New-Alias -name kanban -value New-Kanban -description "Kanban Board" -option ReadOnly
+New-Alias -name buildsvr -value New-BuildServer -description "Teleopti Build Server" -option ReadOnly
 New-Alias -name styleguide -value New-StyleGuide -description "StyleGuide" -option ReadOnly
 New-Alias -name intranet -value New-Intranet -description "Intranet" -option ReadOnly
 New-Alias -name rnd -value New-IntranetRND -description "IntranetRND" -option ReadOnly
