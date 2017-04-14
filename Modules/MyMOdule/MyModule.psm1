@@ -257,18 +257,18 @@ function Enable-TeleoptiVpn {
 
 function Start-TeleoptiInfratestConfig {
     Write-Host "Starting Teleopti InfratestConfig..."
-    & "$TeleoptiDebug\InfratestConfig.bat" -Wait
+    & "$TeleoptiDebug\InfratestConfig.bat"
 }
 
 function Start-TeleoptiFixMyConfigFlow {
     Write-Host "Starting Teleopti FixMyConfigFlow..."
-    & "$TeleoptiDebug\FixMyConfigFlow.bat" -Wait
+    & "$TeleoptiDebug\FixMyConfigFlow.bat"
 }
 
 function Start-TeleoptiRestoreToLocal {
     Enable-TeleoptiVpn
     Write-Host "Started Teleopti Restore To Local..."
-    $p = Start-Process "$TeleoptiDebug\Restore to Local.bat"
+    & "$TeleoptiDebug\Restore to Local.bat"
 }
 
 function Start-GruntCommandWindow {
