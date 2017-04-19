@@ -13,6 +13,7 @@ New-Alias -name vs -value Start-VS -description "Launch visual studio" -option R
 New-Alias -name kvs -value Start-KillVS -description "Kill visual studio" -option ReadOnly
 New-Alias -name rvs -value Start-RestartVS -description "Restart visual studio" -option ReadOnly
 New-Alias -name kis -value Start-KillIISExpress -description "Kill IIS Express" -option ReadOnly
+New-Alias -name cis -value Start-ClearIISExpressCache -description "Clear IIS Express Cache" -option ReadOnly
 New-Alias -name sql -value Start-SSMS -description "Launch sql server management studio" -option ReadOnly
 New-Alias -name hgw -value Start-HG -description "Launch TortoiseHg Workbench" -option ReadOnly
 New-Alias -name pst -value Start-PS -description "Launch phpstorm" -option ReadOnly

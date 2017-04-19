@@ -34,6 +34,7 @@ function Start-Up{
         kvs - 'Kill visual studio'
         rvs - 'Restart visual studio'
         kis - 'Kill IIS Express'
+        cis - 'Clear IIS Express Cache'
         sql - 'Luanch sql server management studio'
         hgw - 'Launch TortoiseHg Workbench'
         pst - 'Launch phpstorm'
@@ -175,6 +176,12 @@ function Start-KillIISExpress {
     } else {
         Write-Host "IIS Express has not started"
     }
+}
+
+function Start-ClearIISExpressCache {
+    Write-Host "Clearing IISExpress Cache..."
+    rm ~/Documents/IISExpress/* -r
+    Write-Host "IISExpress Cache Cleaned!"
 }
 
 function Start-HG {
