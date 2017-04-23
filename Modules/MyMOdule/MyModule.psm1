@@ -79,7 +79,6 @@ function Start-Up{
         dict - 'Youdao dict'
 
     Search:
-        baidu - 'Baidu'
         bing - 'Bing'
         google - 'Google'
         stackoverflow - 'StackOverflow'
@@ -346,12 +345,6 @@ function New-YoudaoDict {
     $url = "http://dict.youdao.com/"
     & $Chrome $url
     Write-Host "Youdao dict opened in Chrome."
-}
-
-function New-Baidu {
-    $url = "https://www.baidu.com/"
-    & $Chrome $url
-    Write-Host "Baidu opened in Chrome."
 }
 
 function New-Bing {
