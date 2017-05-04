@@ -8,7 +8,7 @@ $TeleoptiVpn = "vpn"
 $TeleoptiDoor = "$Env:Door"
 
 $ST = "C:\Program Files\Sublime Text 3\sublime_text.exe"
-$VS = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"
+$VS = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe"
 $HG = "C:\Program Files\TortoiseHg\thgw.exe"
 $VSProcessName = "devenv"
 $STProcessName = "sublime_text"
