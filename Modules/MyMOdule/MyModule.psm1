@@ -62,6 +62,7 @@ function Start-Up{
         toa - 'Change toggle mode to All'
         tor - 'Change toggle mode to RC'
         toc - 'Change toggle mode to Customer'
+        toggle - 'Current toggle mode'
         restore - 'Teleopti Restore to Local'
         infratest - 'Teleopti Teleopti InfratestConfig'
         fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
@@ -327,6 +328,21 @@ function Start-TeleoptiToggleCUSTOMER {
 
     $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config"
     Write-Host "Toggled CUSTOMER"
+}
+
+function Start-TeleoptiShowCurrentToggle {
+    $file = Get-Content "$TeleoptiWeb\web.config"
+    $correctStartPosition = $false
+    Foreach ($line in $file) {
+        if($correctStartPosition -and $line -match '<add key="ToggleMode"'){
+            Write-Host "Current toggle mode: "
+            Write-Host $line
+        }
+
+        if($line -match "ToggleModeAppSetting") {
+            $correctStartPosition = $true
+        }
+    }
 }
 
 function Start-TeleoptiRestoreToLocal {
