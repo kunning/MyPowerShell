@@ -65,7 +65,6 @@ function Start-Up{
         restore - 'Teleopti Restore to Local'
         infratest - 'Teleopti Teleopti InfratestConfig'
         fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
-        gruntcmd - 'Grunt cmd'
 
     Website:
         kanban - 'Kanban Board'
@@ -349,12 +348,6 @@ function Start-TeleoptiFixMyConfigFlow {
     $file | Out-File -Encoding "ASCII" -FilePath "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
     & "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
     rm "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
-}
-
-function Start-GruntCommandWindow {
-    Set-Location $TeleoptiWFM
-    Write-Host "Started Grunt cmd..."
-    Start-Process cmd "grunt --force"
 }
 
 function New-Kanban {

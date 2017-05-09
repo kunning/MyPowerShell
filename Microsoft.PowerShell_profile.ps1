@@ -40,8 +40,6 @@ New-Alias -name restore -value  Start-TeleoptiRestoreToLocal -description "Teleo
 New-Alias -name infratest -value  Start-TeleoptiInfratestConfig -description "Teleopti Teleopti InfratestConfig" -option ReadOnly
 New-Alias -name fixconfig -value  Start-TeleoptiFixMyConfigFlow -description "Teleopti Teleopti FixMyConfigFlow" -option ReadOnly
 
-New-Alias -name gruntcmd -value  Start-GruntCommandWindow -description "Grunt cmd" -option ReadOnly
-
 New-Alias -name kanban -value New-Kanban -description "Kanban Board" -option ReadOnly
 New-Alias -name buildsvr -value New-BuildServer -description "Teleopti Build Server" -option ReadOnly
 New-Alias -name styleguide -value New-StyleGuide -description "StyleGuide" -option ReadOnly
