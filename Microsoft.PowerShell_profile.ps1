@@ -33,6 +33,9 @@ New-Alias -name stylet-p -value Enter-StyleGuideTeleoptiPath -description "Get S
 New-Alias -name vpn -value Enable-TeleoptiVpn -description "Enable Teleopti VPN" -option ReadOnly
 New-Alias -name vpn/f -value Disable-TeleoptiVpn -description "Disable Teleopti VPN" -option ReadOnly
 
+New-Alias -name toa -value  Start-TeleoptiToggleALL -description "Change toggle mode to ALL" -option ReadOnly
+New-Alias -name tor -value  Start-TeleoptiToggleRC -description "Change toggle mode to RC" -option ReadOnly
+New-Alias -name toc -value  Start-TeleoptiToggleCUSTOMER -description "Change toggle mode to CUSTOMER" -option ReadOnly
 New-Alias -name restore -value  Start-TeleoptiRestoreToLocal -description "Teleopti Restore to Local" -option ReadOnly
 New-Alias -name infratest -value  Start-TeleoptiInfratestConfig -description "Teleopti Teleopti InfratestConfig" -option ReadOnly
 New-Alias -name fixconfig -value  Start-TeleoptiFixMyConfigFlow -description "Teleopti Teleopti FixMyConfigFlow" -option ReadOnly

@@ -1,9 +1,10 @@
 $Teleopti = "C:\teleopti\"
 $TeleoptiDebug = "C:\teleopti\.debug-Setup"
+$TeleoptiWeb = "C:\teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web"
 $TeleoptiWFM = "C:\teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web\WFM"
 $StyleGuideHalomaple = "C:\styleguide-halomaple"
 $StyleGuideTeleopti = "C:\styleguide-teleopti"
-$PowerShellFolder = "C:\Users\jianfengz\Documents\WindowsPowerShell"
+$PowerShellFolder = "~\Documents\WindowsPowerShell"
 $TeleoptiVpn = "vpn"
 $TeleoptiDoor = "$Env:Door"
 
@@ -58,6 +59,9 @@ function Start-Up{
         vpn/f - 'Disable Teleopti VPN'
 
     Batchs:
+        toa - 'Change toggle mode to All'
+        tor - 'Change toggle mode to RC'
+        toc - 'Change toggle mode to Customer'
         restore - 'Teleopti Restore to Local'
         infratest - 'Teleopti Teleopti InfratestConfig'
         fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
@@ -260,6 +264,78 @@ function Enable-TeleoptiVpn {
     }
 }
 
+function Start-ClearToggleSetting {
+    $fileOrigin = Get-Content "$TeleoptiWeb\web.config"
+    $fileModified = @()
+    Foreach ($line in $fileOrigin) {
+        if($line -match '<add key="ToggleMode"') {
+        }else{
+            $fileModified += $line
+        }
+    }
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config"
+}
+
+function Start-TeleoptiToggleALL {
+    Start-ClearToggleSetting
+
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiWeb\web.config"
+
+    Foreach ($line in $fileOrigin) {
+        $fileModified += $line
+
+        if($line -match "ToggleModeAppSetting") {
+            $fileModified += '    <add key="ToggleMode" value="ALL" />'
+        }
+    }
+
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config"
+    Write-Host "Toggled ALL"
+}
+
+function Start-TeleoptiToggleRC {
+    Start-ClearToggleSetting
+
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiWeb\web.config"
+
+    Foreach ($line in $fileOrigin) {
+        $fileModified += $line
+
+        if($line -match "ToggleModeAppSetting") {
+            $fileModified += '    <add key="ToggleMode" value="RC" />'
+        }
+    }
+
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config"
+    Write-Host "Toggled RC"
+}
+
+function Start-TeleoptiToggleCUSTOMER {
+    Start-ClearToggleSetting
+
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiWeb\web.config"
+
+    Foreach ($line in $fileOrigin) {
+        $fileModified += $line
+
+        if($line -match "ToggleModeAppSetting") {
+            $fileModified += '    <add key="ToggleMode" value="CUSTOMER" />'
+        }
+    }
+
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config"
+    Write-Host "Toggled CUSTOMER"
+}
+
+function Start-TeleoptiRestoreToLocal {
+    Enable-TeleoptiVpn
+    Write-Host "Started Teleopti Restore To Local..."
+    & "$TeleoptiDebug\Restore to Local.bat"
+}
+
 function Start-TeleoptiInfratestConfig {
     Write-Host "Starting Teleopti InfratestConfig..."
     & "$TeleoptiDebug\InfratestConfig.bat"
@@ -273,12 +349,6 @@ function Start-TeleoptiFixMyConfigFlow {
     $file | Out-File -Encoding "ASCII" -FilePath "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
     & "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
     rm "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
-}
-
-function Start-TeleoptiRestoreToLocal {
-    Enable-TeleoptiVpn
-    Write-Host "Started Teleopti Restore To Local..."
-    & "$TeleoptiDebug\Restore to Local.bat"
 }
 
 function Start-GruntCommandWindow {
