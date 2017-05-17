@@ -54,11 +54,11 @@ function Start-Up{
         styleh-p - 'StyleGuide Halomaple Path'
         stylet-p - 'StyleGuide Teleopti Path'
 
-    NetWork:
+    Network:
         vpn - 'Enable Teleopti VPN'
         vpn/f - 'Disable Teleopti VPN'
 
-    Batchs:
+    Bat:
         toa - 'Change toggle mode to All'
         tor - 'Change toggle mode to RC'
         toc - 'Change toggle mode to Customer'
@@ -67,7 +67,7 @@ function Start-Up{
         infratest - 'Teleopti Teleopti InfratestConfig'
         fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
 
-    Website:
+    Websites:
         kanban - 'Kanban Board'
         buildsvr - 'Teleopti Build Server'
         styleguide - 'StyleGuide'
