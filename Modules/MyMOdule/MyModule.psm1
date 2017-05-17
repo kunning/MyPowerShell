@@ -79,10 +79,10 @@ function Start-Up{
         github - 'Github'
 
     Tools: 
-        dict - 'Youdao dict'
+        dict [word] - 'Youdao dict'
 
     Search:
-        bing - 'Bing'
+        bing [keywords] - 'Search keywords using Bing'
         google - 'Google'
         stackoverflow - 'StackOverflow'
         msdn - 'MSDN'
@@ -425,21 +425,21 @@ function New-Slack {
 }
 
 function New-YoudaoDict {
-    $url = "http://dict.youdao.com/"
+    Write-Host "Looking up $args in Youdao Dict opened on browser"
+    $url = "http://dict.youdao.com/w/eng/$args/#keyfrom=dict2.index"
     & $Chrome $url
-    Write-Host "Youdao dict opened in Chrome."
 }
 
 function New-Bing {
-    $url = "http://cn.bing.com/?intlF=/"
+    $url = "http://cn.bing.com/search?q=$args"
     & $Chrome $url
-    Write-Host "Bing opened in Chrome."
+    Write-Host "Searched keywords using Bing."
 }
 
 function New-Google {
-    $url = "https://www.google.com/"
+    $url = "https://www.google.com/?q=$args"
     & $Chrome $url
-    Write-Host "Google opened in Chrome."
+    Write-Host "Searched keywords using Google."
 }
 
 function New-StackOverflow {
