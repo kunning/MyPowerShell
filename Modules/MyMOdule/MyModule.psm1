@@ -426,7 +426,7 @@ function New-Slack {
 
 function New-YoudaoDict {
     Write-Host "Looking up $args in Youdao Dict opened on browser"
-    $url = "http://dict.youdao.com/w/eng/$args/#keyfrom=dict2.index"
+    $url = "http://dict.youdao.com/w/eng/$($args[0])/#keyfrom=dict2.index"
     & $Chrome $url
 }
 
