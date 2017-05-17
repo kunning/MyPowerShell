@@ -83,7 +83,7 @@ function Start-Up{
 
     Search:
         bing [keywords] - 'Search keywords using Bing'
-        google - 'Google'
+        google [keywords] - 'Search keywords using Google'
         stackoverflow - 'StackOverflow'
         msdn - 'MSDN'
 
@@ -425,21 +425,21 @@ function New-Slack {
 }
 
 function New-YoudaoDict {
-    Write-Host "Looking up $args in Youdao Dict opened on browser"
-    $url = "http://dict.youdao.com/w/eng/$($args[0])/#keyfrom=dict2.index"
+    Write-Host "Looking up $($args[0]) in Youdao Dict"
+    $url = "http://dict.youdao.com/w/eng/$($args[0])"
     & $Chrome $url
 }
 
 function New-Bing {
+    Write-Host "Searched keywords using Bing."
     $url = "http://cn.bing.com/search?q=$args"
     & $Chrome $url
-    Write-Host "Searched keywords using Bing."
 }
 
 function New-Google {
+    Write-Host "Searched keywords using Google."
     $url = "https://www.google.com/?q=$args"
     & $Chrome $url
-    Write-Host "Searched keywords using Google."
 }
 
 function New-StackOverflow {
