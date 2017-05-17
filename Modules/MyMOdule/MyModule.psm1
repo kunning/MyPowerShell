@@ -82,6 +82,7 @@ function Start-Up{
         dict [word] - 'Youdao dict'
 
     Search:
+        baidu [keywords] - 'Search keywords using Baidu'
         bing [keywords] - 'Search keywords using Bing'
         google [keywords] - 'Search keywords using Google'
         stackoverflow - 'StackOverflow'
@@ -429,6 +430,13 @@ function New-YoudaoDict {
     $url = "http://dict.youdao.com/w/eng/$($args[0])"
     & $Chrome $url
 }
+
+function New-Baidu {
+    Write-Host "Searched keywords using Baidu."
+    $url = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=$args"
+    & $Chrome $url
+}
+
 
 function New-Bing {
     Write-Host "Searched keywords using Bing."
