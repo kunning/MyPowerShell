@@ -53,6 +53,7 @@ New-Alias -name azure -value New-Azure -description "Azure" -option ReadOnly
 New-Alias -name github -value New-Github -description "Github" -option ReadOnly
 
 New-Alias -name dict -value New-YoudaoDict -description "Youdao dict" -option ReadOnly
+New-Alias -name can -value New-CanIUse -description "Baidu" -option ReadOnly
 
 New-Alias -name baidu -value New-Baidu -description "Baidu" -option ReadOnly
 New-Alias -name bing -value New-Bing -description "Bing" -option ReadOnly

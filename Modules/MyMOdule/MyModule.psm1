@@ -80,6 +80,7 @@ function Start-Up{
 
     Tools: 
         dict [word] - 'Youdao dict'
+        can [word] - 'Can I Use'
 
     Search:
         baidu [keywords] - 'Search keywords using Baidu'
@@ -431,12 +432,17 @@ function New-YoudaoDict {
     & $Chrome $url
 }
 
+function New-CanIUse {
+    Write-Host "Can I use $($args[0]) ?"
+    $url = "http://caniuse.com/#search=$($args[0])"
+    & $Chrome $url
+}
+
 function New-Baidu {
     Write-Host "Searched keywords using Baidu."
     $url = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=$args"
     & $Chrome $url
 }
-
 
 function New-Bing {
     Write-Host "Searched keywords using Bing."
