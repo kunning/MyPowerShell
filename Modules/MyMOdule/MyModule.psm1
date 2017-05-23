@@ -1,12 +1,16 @@
 $Teleopti = "C:\teleopti\"
 $TeleoptiDebug = "C:\teleopti\.debug-Setup"
 $TeleoptiWeb = "C:\teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web"
+$TeleoptiAuthenticationBridge = "C:\teleopti\Teleopti.Ccc.Web.AuthenticationBridge"
 $TeleoptiWFM = "C:\teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web\WFM"
+$TeleoptiVSConfig = "C:\teleopti\.vs\config"
+$TeleoptiWebPort = "52858"
 $StyleGuideHalomaple = "C:\styleguide-halomaple"
 $StyleGuideTeleopti = "C:\styleguide-teleopti"
 $PowerShellFolder = "~\Documents\WindowsPowerShell"
 $TeleoptiVpn = "vpn"
 $TeleoptiDoor = "$Env:Door"
+$LocalIP = "$Env:LocalIP"
 
 $ST = "C:\Program Files\Sublime Text 3\sublime_text.exe"
 $VS = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe"
@@ -66,6 +70,8 @@ function Start-Up{
         restore - 'Teleopti Restore to Local'
         infratest - 'Teleopti Teleopti InfratestConfig'
         fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
+        mobile - 'Enable mobile access of TeleoptiWFM/Web'
+        desktop - 'Enable desktop access only of TeleoptiWFM/Web'
 
     Websites:
         kanban - 'Kanban Board'
@@ -345,6 +351,99 @@ function Start-TeleoptiShowCurrentToggle {
             $correctStartPosition = $true
         }
     }
+}
+
+function Start-TeleoptiEnableMobileAccess {
+    #1. add ip binding
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiVSConfig\applicationhost.config"
+
+    $withinWebSiteTag = $false
+    Foreach ($line in $fileOrigin) {
+        $fileModified += $line
+
+        if($withinWebSiteTag){
+            if($line -match "`:$TeleoptiWebPort`:localhost"){
+                $fileModified += $line.Replace("localhost", "$LocalIP")
+            }
+            if($line -match "Teleopti.Analytics.Portal"){
+                $withinWebSiteTag = $false
+            }
+        }
+
+        if($line -match "Teleopti.Ccc.Web-Site"){
+            $withinWebSiteTag = $true
+        }
+    }
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiVSConfig\applicationhost.config"
+
+    #2. replace localhost with ip in web/web.config
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiWeb\web.config"
+
+     Foreach ($line in $fileOrigin) {
+        if($line -match "localhost`:$TeleoptiWebPort") {
+            $fileModified += $line.Replace("localhost", "$LocalIP")
+        } else {
+            $fileModified += $line
+        }
+    }
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config" 
+
+    #3. replace localhost with ip in AuthenticationBridge/web.config
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiAuthenticationBridge\web.config"
+
+     Foreach ($line in $fileOrigin) {
+        if($line -match "localhost`:$TeleoptiWebPort") {
+            $fileModified += $line.Replace("localhost", "$LocalIP")
+        } else {
+            $fileModified += $line
+        }
+    }
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiAuthenticationBridge\web.config"
+    Write-Host "Please open http://$LocalIP`:$TeleoptiWebPort/TeleoptiWFM/Web on your mobile when project is running"
+}
+
+function Start-TeleoptiEnableDesktopAccessOnly {
+    #1. remove ip binding
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiVSConfig\applicationhost.config"
+
+    Foreach ($line in $fileOrigin) {
+        if($line -match "`:$TeleoptiWebPort`:$LocalIP"){
+            continue
+        }
+        $fileModified += $line
+    }
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiVSConfig\applicationhost.config"
+
+    #2. replace ip with localhost in web/web.config
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiWeb\web.config"
+
+    Foreach ($line in $fileOrigin) {
+        if($line -match "$LocalIP`:$TeleoptiWebPort") {
+            $fileModified += $line.Replace("$LocalIP", "localhost")
+        } else {
+            $fileModified += $line
+        }
+    }
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config" 
+
+    #3. replace ip with localhost in AuthenticationBridge/web.config
+    $fileModified = @()
+    $fileOrigin = Get-Content "$TeleoptiAuthenticationBridge\web.config"
+
+    Foreach ($line in $fileOrigin) {
+        if($line -match "$LocalIP`:$TeleoptiWebPort") {
+            $fileModified += $line.Replace("$LocalIP","localhost")
+        } else {
+            $fileModified += $line
+        }
+    }
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiAuthenticationBridge\web.config"
+    Write-Host "TeleoptiWFM/web`: Desktop access only"
 }
 
 function Start-TeleoptiRestoreToLocal {

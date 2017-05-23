@@ -38,8 +38,10 @@ New-Alias -name tor -value  Start-TeleoptiToggleRC -description "Change toggle m
 New-Alias -name toc -value  Start-TeleoptiToggleCUSTOMER -description "Change toggle mode to CUSTOMER" -option ReadOnly
 New-Alias -name toggle -value  Start-TeleoptiShowCurrentToggle -description "Current toggle mode: " -option ReadOnly
 New-Alias -name restore -value  Start-TeleoptiRestoreToLocal -description "Teleopti Restore to Local" -option ReadOnly
-New-Alias -name infratest -value  Start-TeleoptiInfratestConfig -description "Teleopti Teleopti InfratestConfig" -option ReadOnly
-New-Alias -name fixconfig -value  Start-TeleoptiFixMyConfigFlow -description "Teleopti Teleopti FixMyConfigFlow" -option ReadOnly
+New-Alias -name infratest -value  Start-TeleoptiInfratestConfig -description "Teleopti InfratestConfig" -option ReadOnly
+New-Alias -name fixconfig -value  Start-TeleoptiFixMyConfigFlow -description "Teleopti FixMyConfigFlow" -option ReadOnly
+New-Alias -name mobile -value  Start-TeleoptiEnableMobileAccess -description "Enable mobile access of TeleoptiWFM/Web" -option ReadOnly
+New-Alias -name desktop -value  Start-TeleoptiEnableDesktopAccessOnly -description "Enable desktop access only of TeleoptiWFM/Web" -option ReadOnly
 
 New-Alias -name kanban -value New-Kanban -description "Kanban Board" -option ReadOnly
 New-Alias -name buildsvr -value New-BuildServer -description "Teleopti Build Server" -option ReadOnly
