@@ -85,6 +85,7 @@ function Start-Up{
         github - 'Github'
 
     Tools: 
+        open [url] - 'Open url in browser'
         dict [word] - 'Youdao dict'
         can [word] - 'Can I Use'
 
@@ -467,13 +468,19 @@ function Start-TeleoptiFixMyConfigFlow {
     rm "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
 }
 
+function New-OpenUrlInBrowser {
+    $url = "http://$($args[0])"
+    Write-Host "Opened $url in browser"
+    & $Chrome $url
+}
+
 function New-Kanban {
     Enable-TeleoptiVpn
     $url1 = "http://rndkanban/board/#/team/8"
     $url2 = "http://rndkanban/board/#/"
     & $Chrome $url1
     & $Chrome $url2
-    Write-Host "Kanban  opened in Chrome."
+    Write-Host "Kanban opened in Chrome."
 }
 
 function New-BuildServer {

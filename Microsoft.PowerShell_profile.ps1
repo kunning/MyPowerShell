@@ -54,6 +54,7 @@ New-Alias -name mail -value New-Mail -description "Mail" -option ReadOnly
 New-Alias -name azure -value New-Azure -description "Azure" -option ReadOnly
 New-Alias -name github -value New-Github -description "Github" -option ReadOnly
 
+New-Alias -name open -value New-OpenUrlInBrowser -description "Open url in browser" -option ReadOnly
 New-Alias -name dict -value New-YoudaoDict -description "Youdao dict" -option ReadOnly
 New-Alias -name can -value New-CanIUse -description "Baidu" -option ReadOnly
 
