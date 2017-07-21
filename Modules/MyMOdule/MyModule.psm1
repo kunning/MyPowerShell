@@ -88,6 +88,7 @@ function Start-Up{
         open [url] - 'Open url in browser'
         dict [word] - 'Youdao dict'
         can [word] - 'Can I Use'
+        clipc - 'Clip Current Path'
 
     Search:
         baidu [keywords] - 'Search keywords using Baidu'
@@ -579,12 +580,6 @@ function Start-OpenGate {
     Write-Host "Gate is opened"
 }
 
-Export-ModuleMember -Function 'Start-*'
-Export-ModuleMember -Function 'Stop-*'
-Export-ModuleMember -Function 'Enter-*'
-Export-ModuleMember -Function 'Enable-*'
-Export-ModuleMember -Function 'Disable-*'
-Export-ModuleMember -Function 'Update-*'
-Export-ModuleMember -Function 'Get-TeleoptiVpn'
-Export-ModuleMember -Function 'New-*'
-Export-ModuleMember -Variable 'Teleopti*'
+function Start-ClipCurrentPath {
+    $pwd.Path | clip
+}
