@@ -43,6 +43,9 @@ New-Alias -name fixconfig -value  Start-TeleoptiFixMyConfigFlow -description "Te
 New-Alias -name mobile -value  Start-TeleoptiEnableMobileAccess -description "Enable mobile access of TeleoptiWFM/Web" -option ReadOnly
 New-Alias -name desktop -value  Start-TeleoptiEnableDesktopAccessOnly -description "Enable desktop access only of TeleoptiWFM/Web" -option ReadOnly
 
+New-Alias -name fat -value Start-TeleoptiFatClient -description "Run Teleopti Fat Client" -option ReadOnly
+New-Alias -name kfat -value Start-KillTeleoptiFatClient -description "Kill Teleopti Fat Client" -option ReadOnly
+
 New-Alias -name kanban -value New-Kanban -description "Kanban Board" -option ReadOnly
 New-Alias -name buildsvr -value New-BuildServer -description "Teleopti Build Server" -option ReadOnly
 New-Alias -name styleguide -value New-StyleGuide -description "StyleGuide" -option ReadOnly

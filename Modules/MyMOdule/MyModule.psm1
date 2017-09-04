@@ -1,9 +1,11 @@
 $Teleopti = "C:\teleopti\"
-$TeleoptiDebug = "C:\teleopti\.debug-Setup"
-$TeleoptiWeb = "C:\teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web"
-$TeleoptiAuthenticationBridge = "C:\teleopti\Teleopti.Ccc.Web.AuthenticationBridge"
-$TeleoptiWFM = "C:\teleopti\Teleopti.Ccc.Web\Teleopti.Ccc.Web\WFM"
-$TeleoptiVSConfig = "C:\teleopti\.vs\config"
+$TeleoptiDebug = $Teleopti + ".debug-Setup"
+$TeleoptiWeb = $Teleopti + "Teleopti.Ccc.Web\Teleopti.Ccc.Web"
+$TeleoptiAuthenticationBridge = $Teleopti + "Teleopti.Ccc.Web.AuthenticationBridge"
+$TeleoptiWFM = $Teleopti + "Teleopti.Ccc.Web\Teleopti.Ccc.Web\WFM"
+$TeleoptiFatClientPath = $Teleopti + "Teleopti.Ccc.SmartClientPortal\Teleopti.Ccc.SmartClientPortal.Shell\bin\Debug\Teleopti.Ccc.SmartClientPortal.Shell.exe"
+$TeleoptiFatClientProcessName = "Teleopti.Ccc.SmartClientPortal.Shell"
+$TeleoptiVSConfig = $Teleopti + ".vs\config"
 $TeleoptiWebPort = "52858"
 $StyleGuideHalomaple = "C:\styleguide-halomaple"
 $StyleGuideTeleopti = "C:\styleguide-teleopti"
@@ -72,6 +74,10 @@ function Start-Up{
         fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
         mobile - 'Enable mobile access of TeleoptiWFM/Web'
         desktop - 'Enable desktop access only of TeleoptiWFM/Web'
+
+    Projects:
+        fat - 'Run Teleopti Fat Client'
+        kfat - 'Kill Teleopti Fat Client'
 
     Websites:
         kanban - 'Kanban Board'
@@ -467,6 +473,24 @@ function Start-TeleoptiFixMyConfigFlow {
     $file | Out-File -Encoding "ASCII" -FilePath "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
     & "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
     rm "$TeleoptiDebug\FixMyConfigFlowDemo.bat"
+}
+
+function Start-TeleoptiFatClient {
+    & $TeleoptiFatClientPath
+}
+
+function Start-KillTeleoptiFatClient {
+    $process = Get-FatClientProcess
+    if($process.Id){
+        Stop-Process $process.Id
+        Write-Host "Teleopti Fat Client is terminated"
+    } else {
+        Write-Host "Teleopti Fat Client has not started"
+    }
+}
+
+function Get-FatClientProcess {
+    return Get-Process $TeleoptiFatClientProcessName
 }
 
 function New-OpenUrlInBrowser {
