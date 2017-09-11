@@ -21,6 +21,7 @@ New-Alias -name ss -value Start-Shadowsocks -description "Launch Shadowsocks" -o
 New-Alias -name kss -value Start-KillShadowsocks -description "Kill Shadowsocks" -option ReadOnly
 
 New-Alias -name t -value Enter-Teleopti -description "Teleopti Root" -option ReadOnly
+New-Alias -name util -value Enter-TeleoptiDevUtilities -description "Teleopti DevUtitlities" -option ReadOnly
 New-Alias -name debug -value Enter-TeleoptiDebug -description "Teleopti Debug" -option ReadOnly
 New-Alias -name wfm -value Enter-TeleoptiWFM -description "Teleopti WFM" -option ReadOnly
 New-Alias -name styleh -value Enter-StyleGuideHalomaple -description "StyleGuide-Halomaple" -option ReadOnly

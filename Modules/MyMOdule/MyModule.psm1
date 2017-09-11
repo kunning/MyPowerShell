@@ -1,4 +1,5 @@
 $Teleopti = "C:\teleopti\"
+$TeleoptiDevUtilities = "C:\DevUtilities"
 $TeleoptiDebug = $Teleopti + ".debug-Setup"
 $TeleoptiWeb = $Teleopti + "Teleopti.Ccc.Web\Teleopti.Ccc.Web"
 $TeleoptiAuthenticationBridge = $Teleopti + "Teleopti.Ccc.Web.AuthenticationBridge"
@@ -50,6 +51,7 @@ function Start-Up{
 
     Folders: 
         t - 'Teleopti Root'
+        util - 'Teleopti DevUtitlities'
         debug - 'Teleopti Debug'
         wfm - 'Teleopti WFM'
         styleh - 'StyleGuide Halomaple'
@@ -230,6 +232,10 @@ function Start-KillShadowsocks {
 
 function Enter-Teleopti {
     Set-Location $Teleopti
+}
+
+function Enter-TeleoptiDevUtilities {
+    Set-Location $TeleoptiDevUtilities
 }
 
 function Enter-TeleoptiDebug {
