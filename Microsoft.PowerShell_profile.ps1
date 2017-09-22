@@ -16,7 +16,6 @@ New-Alias -name kis -value Start-KillIISExpress -description "Kill IIS Express" 
 New-Alias -name cis -value Start-ClearIISExpressCache -description "Clear IIS Express Cache" -option ReadOnly
 New-Alias -name sql -value Start-SSMS -description "Launch sql server management studio" -option ReadOnly
 New-Alias -name hgw -value Start-HG -description "Launch TortoiseHg Workbench" -option ReadOnly
-New-Alias -name pst -value Start-PS -description "Launch phpstorm" -option ReadOnly
 New-Alias -name ss -value Start-Shadowsocks -description "Launch Shadowsocks" -option ReadOnly
 New-Alias -name kss -value Start-KillShadowsocks -description "Kill Shadowsocks" -option ReadOnly
 

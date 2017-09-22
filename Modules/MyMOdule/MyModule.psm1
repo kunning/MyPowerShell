@@ -21,7 +21,6 @@ $HG = "C:\Program Files\TortoiseHg\thgw.exe"
 $VSProcessName = "devenv"
 $STProcessName = "sublime_text"
 $IISExpressProcessName = "iisexpress"
-$PS = "C:\jianfeng\PhpStorm 10.0.3\bin\PhpStorm.exe"
 $SSMS = "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
 $Chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 $Shadowsocks = "C:\jianfeng\Shadowsocks.exe"
@@ -206,10 +205,6 @@ function Start-ClearIISExpressCache {
 
 function Start-HG {
     Start-Process $HG
-}
-
-function Start-PS {
-    Start-Process $PS
 }
 
 function Start-SSMS {
