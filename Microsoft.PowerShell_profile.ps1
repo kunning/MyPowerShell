@@ -47,7 +47,7 @@ New-Alias -name fat -value Start-TeleoptiFatClient -description "Run Teleopti Fa
 New-Alias -name kfat -value Start-KillTeleoptiFatClient -description "Kill Teleopti Fat Client" -option ReadOnly
 
 New-Alias -name kanban -value New-Kanban -description "Kanban Board" -option ReadOnly
-New-Alias -name buildsvr -value New-BuildServer -description "Teleopti Build Server" -option ReadOnly
+New-Alias -name build -value New-BuildServer -description "Teleopti Build Server" -option ReadOnly
 New-Alias -name styleguide -value New-StyleGuide -description "StyleGuide" -option ReadOnly
 New-Alias -name intranet -value New-Intranet -description "Intranet" -option ReadOnly
 New-Alias -name rnd -value New-IntranetRND -description "IntranetRND" -option ReadOnly

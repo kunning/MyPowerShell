@@ -1,3 +1,5 @@
+
+
 $Teleopti = "C:\teleopti\"
 $TeleoptiDevUtilities = "C:\DevUtilities"
 $TeleoptiDebug = $Teleopti + ".debug-Setup"
@@ -29,7 +31,7 @@ $ShadowsocksProcessName = "Shadowsocks"
 function Start-Up{
     Write-Host "
     Good to see you!
-    
+
     Programs:
         st - 'Launch sublime'
         st-c - 'Launch sublime and open current folder'
@@ -48,7 +50,7 @@ function Start-Up{
         ss - 'Shadowsocks'
         kss - 'Kill Shadowsocks'
 
-    Folders: 
+    Folders:
         t - 'Teleopti Root'
         util - 'Teleopti DevUtitlities'
         debug - 'Teleopti Debug'
@@ -82,7 +84,7 @@ function Start-Up{
 
     Websites:
         kanban - 'Kanban Board'
-        buildsvr - 'Teleopti Build Server'
+        build - 'Teleopti Build Server'
         styleguide - 'StyleGuide'
         intranet - 'Intranet'
         rnd - 'IntranetRND'
@@ -91,7 +93,7 @@ function Start-Up{
         azure - 'Microsoft Azure Site'
         github - 'Github'
 
-    Tools: 
+    Tools:
         open [url] - 'Open url in browser'
         dict [word] - 'Youdao dict'
         can [word] - 'Can I Use'
@@ -127,7 +129,7 @@ function Update-MyModule {
 }
 
 function Start-ST {
-    Start-Process $ST 
+    Start-Process $ST
 }
 
 function Start-STCurrentFolder{
@@ -272,7 +274,7 @@ function Disable-TeleoptiVpn {
 
 function Enable-TeleoptiVpn {
     $vpn = Get-TeleoptiVpn
-    
+
     if ($vpn -eq $null) {
         Write-Host "Attempting to connect to $TeleoptiVpn..."
         rasdial $TeleoptiVpn
@@ -397,7 +399,7 @@ function Start-TeleoptiEnableMobileAccess {
             $fileModified += $line
         }
     }
-    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config" 
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config"
 
     #3. replace localhost with ip in AuthenticationBridge/web.config
     $fileModified = @()
@@ -438,7 +440,7 @@ function Start-TeleoptiEnableDesktopAccessOnly {
             $fileModified += $line
         }
     }
-    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config" 
+    $fileModified | Out-File -Encoding "UTF8" "$TeleoptiWeb\web.config"
 
     #3. replace ip with localhost in AuthenticationBridge/web.config
     $fileModified = @()
@@ -503,9 +505,7 @@ function New-OpenUrlInBrowser {
 function New-Kanban {
     Enable-TeleoptiVpn
     $url1 = "http://rndkanban/board/#/team/8"
-    $url2 = "http://rndkanban/board/#/"
     & $Chrome $url1
-    & $Chrome $url2
     Write-Host "Kanban opened in Chrome."
 }
 
