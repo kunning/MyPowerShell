@@ -1,5 +1,3 @@
-
-
 $Teleopti = "C:\teleopti\"
 $TeleoptiDevUtilities = "C:\DevUtilities"
 $TeleoptiDebug = $Teleopti + ".debug-Setup"
@@ -25,8 +23,6 @@ $STProcessName = "sublime_text"
 $IISExpressProcessName = "iisexpress"
 $SSMS = "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
 $Chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-$Shadowsocks = "C:\jianfeng\Shadowsocks.exe"
-$ShadowsocksProcessName = "Shadowsocks"
 
 function Start-Up{
     Write-Host "
@@ -47,8 +43,6 @@ function Start-Up{
         sql - 'Luanch sql server management studio'
         hgw - 'Launch TortoiseHg Workbench'
         pst - 'Launch phpstorm'
-        ss - 'Shadowsocks'
-        kss - 'Kill Shadowsocks'
 
     Folders:
         t - 'Teleopti Root'
@@ -211,20 +205,6 @@ function Start-HG {
 
 function Start-SSMS {
     Start-Process $SSMS
-}
-
-function Start-Shadowsocks {
-    Start-Process $Shadowsocks
-}
-
-function Start-KillShadowsocks {
-    $process = Get-Process $ShadowsocksProcessName
-    if($process.Id){
-        Stop-Process $process.Id
-        Write-Host "Shadowsocks is terminated"
-    } else {
-        Write-Host "Shadowsocks has not started"
-    }
 }
 
 function Enter-Teleopti {
@@ -529,7 +509,7 @@ function New-Intranet {
 }
 
 function New-IntranetRND {
-    $url = "https://intranet.teleopti.com/teleopticcc/rnd~2"
+    $url = "https://intranet.teleopti.com/teleoptiwfm/rnd~2/"
     & $Chrome $url
     Write-Host "Intranet RND opened in Chrome."
 }
@@ -559,7 +539,7 @@ function New-Slack {
 }
 
 function New-YoudaoDict {
-    Write-Host "Looking up $($args[0]) in Youdao Dict"
+    Write-Host "Looking up $($args[0]) in Youdao dict online"
     $url = "http://dict.youdao.com/w/eng/$($args[0])"
     & $Chrome $url
 }
