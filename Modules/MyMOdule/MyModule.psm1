@@ -15,6 +15,7 @@ $TeleoptiVpn = "vpn"
 $TeleoptiDoor = "$Env:Door"
 $LocalIP = "$Env:LocalIP"
 
+$ConnectAzureScript = "~\Documents\ConnectAzure.ps1"
 $ST = "C:\Program Files\Sublime Text 3\sublime_text.exe"
 $VS = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe"
 $HG = "C:\Program Files\TortoiseHg\thgw.exe"
@@ -71,6 +72,7 @@ function Start-Up{
         fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
         mobile - 'Enable mobile access of TeleoptiWFM/Web'
         desktop - 'Enable desktop access only of TeleoptiWFM/Web'
+        azure - 'Connect to Microsoft Azure Virtual Machine'
 
     Projects:
         fat - 'Run Teleopti Fat Client'
@@ -84,7 +86,6 @@ function Start-Up{
         rnd - 'IntranetRND'
         slack - 'Slack'
         mail - 'Mail'
-        azure - 'Microsoft Azure Site'
         github - 'Github'
 
     Tools:
@@ -472,6 +473,10 @@ function Start-KillTeleoptiFatClient {
     }
 }
 
+function Start-ConnectAzure {
+    & $ConnectAzureScript
+}
+
 function Get-FatClientProcess {
     return Get-Process $TeleoptiFatClientProcessName
 }
@@ -518,12 +523,6 @@ function New-Mail {
     $url = "http://webmail.teleopti.com/"
     & $Chrome $url
     Write-Host "Mail opened in Chrome."
-}
-
-function New-Azure {
-    $url = "https://portal.azure.com/"
-    & $Chrome $url
-    Write-Host "Microsoft Azure site opened in Chrome."
 }
 
 function New-Github {
