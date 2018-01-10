@@ -31,6 +31,7 @@ New-Alias -name stylet-p -value Enter-StyleGuideTeleoptiPath -description "Get S
 
 New-Alias -name vpn -value Enable-TeleoptiVpn -description "Enable Teleopti VPN" -option ReadOnly
 New-Alias -name vpn/f -value Disable-TeleoptiVpn -description "Disable Teleopti VPN" -option ReadOnly
+New-Alias -name vpn? -value Get-VpnStatus -description "Get VPN Status" -option ReadOnly
 
 New-Alias -name toa -value  Start-TeleoptiToggleALL -description "Change toggle mode to ALL" -option ReadOnly
 New-Alias -name tor -value  Start-TeleoptiToggleRC -description "Change toggle mode to RC" -option ReadOnly

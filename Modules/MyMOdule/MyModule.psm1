@@ -61,6 +61,7 @@ function Start-Up{
     Network:
         vpn - 'Enable Teleopti VPN'
         vpn/f - 'Disable Teleopti VPN'
+        vpn? - 'Get VPN Status'
 
     Bat:
         toa - 'Change toggle mode to All'
@@ -262,6 +263,10 @@ function Enable-TeleoptiVpn {
     } else {
         Write-Host "Connected to $vpn."
     }
+}
+
+function Get-VpnStatus {
+    rasdial
 }
 
 function Start-ClearToggleSetting {
