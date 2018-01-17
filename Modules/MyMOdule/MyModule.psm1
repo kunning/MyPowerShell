@@ -16,11 +16,9 @@ $TeleoptiDoor = "$Env:Door"
 $LocalIP = "$Env:LocalIP"
 
 $ConnectAzureScript = "~\Documents\ConnectAzure.ps1"
-$ST = "C:\Program Files\Sublime Text 3\sublime_text.exe"
 $VS = "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\devenv.exe"
 $HG = "C:\Program Files\TortoiseHg\thgw.exe"
 $VSProcessName = "devenv"
-$STProcessName = "sublime_text"
 $IISExpressProcessName = "iisexpress"
 $SSMS = "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe"
 $Chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
@@ -30,12 +28,6 @@ function Start-Up{
     Good to see you!
 
     Programs:
-        st - 'Launch sublime'
-        st-c - 'Launch sublime and open current folder'
-        st-t - 'Launch sublime and open Teleopti folder'
-        st-styleh - 'Launch sublime and open styleguide-halomaple folder'
-        st-stylet - 'Launch sublime and open styleguide-teleopti folder'
-        kst - 'Kill sublime text'
         vs - 'Launch visual studio'
         kvs - 'Kill visual studio'
         rvs - 'Restart visual studio'
@@ -122,40 +114,6 @@ function Update-MyModule {
     Import-Module MyModule
 
     Write-Host "Module updated!"
-}
-
-function Start-ST {
-    Start-Process $ST
-}
-
-function Start-STCurrentFolder{
-    Start-Process $ST $pwd
-}
-
-function Start-STTeleopti {
-    Start-Process $ST $Teleopti
-}
-
-function Start-STStyleGuideHalomaple {
-    Start-Process $ST $StyleGuideHalomaple
-}
-
-function Start-STStyleGuideTeleopti {
-    Start-Process $ST $StyleGuideTeleopti
-}
-
-function Start-KillST{
-    $process = Get-STProcess
-    if($process.Id){
-        Stop-Process $process.Id
-        Write-Host "Sublime Text is terminated"
-    } else {
-        Write-Host "Sublime Text has not started"
-    }
-}
-
-function Get-STProcess{
-    return Get-Process $STProcessName
 }
 
 function Start-VS {

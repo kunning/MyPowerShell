@@ -1,14 +1,5 @@
 Import-Module MyModule
 
-New-Alias -name st -value Start-ST -description "Launch sublime" -option ReadOnly
-
-New-Alias -name st-c -value Start-STCurrentFolder -description "Launch sublime and open current folder" -option ReadOnly
-
-New-Alias -name st-t -value Start-STTeleopti -description "Launch sublime and open Teleopti folder" -option ReadOnly
-New-Alias -name st-styleh -value Start-STStyleGuideHalomaple -description "Launch sublime and open styleguide-halomaple folder" -option ReadOnly
-New-Alias -name st-stylet -value Start-STStyleGuideTeleopti -description "Launch sublime and open styleguide-teleopti folder" -option ReadOnly
-New-Alias -name kst -value Start-KillST -description "Kill sublime text" -option ReadOnly
-
 New-Alias -name vs -value Start-VS -description "Launch visual studio" -option ReadOnly
 New-Alias -name kvs -value Start-KillVS -description "Kill visual studio" -option ReadOnly
 New-Alias -name rvs -value Start-RestartVS -description "Restart visual studio" -option ReadOnly
