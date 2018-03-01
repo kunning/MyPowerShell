@@ -1,4 +1,4 @@
-$Teleopti = "C:\teleopti\"
+$Teleopti = "C:\src\main\"
 $TeleoptiDevUtilities = "C:\DevUtilities"
 $TeleoptiDebug = $Teleopti + ".debug-Setup"
 $TeleoptiWeb = $Teleopti + "Teleopti.Ccc.Web\Teleopti.Ccc.Web"
@@ -24,83 +24,110 @@ $SSMS = "C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementSt
 $Chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 
 function Start-Up{
-    Write-Host "
+	Write-Host "
     Good to see you!
-
-    Programs:
-        vs - 'Launch visual studio'
-        kvs - 'Kill visual studio'
-        rvs - 'Restart visual studio'
-        kis - 'Kill IIS Express'
-        cis - 'Clear IIS Express Cache'
-        sql - 'Luanch sql server management studio'
-        hgw - 'Launch TortoiseHg Workbench'
-        pst - 'Launch phpstorm'
 
     Folders:
         t - 'Teleopti Root'
-        util - 'Teleopti DevUtitlities'
-        debug - 'Teleopti Debug'
+        debug - 'Teleopti .debug-setup'
         wfm - 'Teleopti WFM'
-        styleh - 'StyleGuide Halomaple'
-        stylet - 'StyleGuide Teleopti'
-        psfolder - 'My PowerShell Folder'
 
-    Folders Paths:
-        styleh-p - 'StyleGuide Halomaple Path'
-        stylet-p - 'StyleGuide Teleopti Path'
-
-    Network:
-        vpn - 'Enable Teleopti VPN'
-        vpn/f - 'Disable Teleopti VPN'
-        vpn? - 'Get VPN Status'
 
     Bat:
         toa - 'Change toggle mode to All'
         tor - 'Change toggle mode to RC'
         toc - 'Change toggle mode to Customer'
         toggle - 'Current toggle mode'
-        restore - 'Teleopti Restore to Local'
-        infratest - 'Teleopti Teleopti InfratestConfig'
-        fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
-        mobile - 'Enable mobile access of TeleoptiWFM/Web'
-        desktop - 'Enable desktop access only of TeleoptiWFM/Web'
-        azure - 'Connect to Microsoft Azure Virtual Machine'
 
     Projects:
         fat - 'Run Teleopti Fat Client'
         kfat - 'Kill Teleopti Fat Client'
 
-    Websites:
-        kanban - 'Kanban Board'
-        build - 'Teleopti Build Server'
-        styleguide - 'StyleGuide'
-        intranet - 'Intranet'
-        rnd - 'IntranetRND'
-        slack - 'Slack'
-        mail - 'Mail'
-        github - 'Github'
-
     Tools:
-        open [url] - 'Open url in browser'
-        dict [word] - 'Youdao dict'
-        can [word] - 'Can I Use'
         clipc - 'Clip Current Path'
-
-    Search:
-        baidu [keywords] - 'Search keywords using Baidu'
-        bing [keywords] - 'Search keywords using Bing'
-        google [keywords] - 'Search keywords using Google'
-        stackoverflow - 'StackOverflow'
-        msdn - 'MSDN'
-
-    Gate:
-        gate - 'Open Gate'
 
     PS:
         commands - 'Show Commands'
         update - 'Update Module'
     "
+	
+    # Write-Host "
+    # Good to see you!
+
+    # Programs:
+        # vs - 'Launch visual studio'
+        # kvs - 'Kill visual studio'
+        # rvs - 'Restart visual studio'
+        # kis - 'Kill IIS Express'
+        # cis - 'Clear IIS Express Cache'
+        # sql - 'Luanch sql server management studio'
+        # hgw - 'Launch TortoiseHg Workbench'
+        # pst - 'Launch phpstorm'
+
+    # Folders:
+        # t - 'Teleopti Root'
+        # util - 'Teleopti DevUtitlities'
+        # debug - 'Teleopti Debug'
+        # wfm - 'Teleopti WFM'
+        # styleh - 'StyleGuide Halomaple'
+        # stylet - 'StyleGuide Teleopti'
+        # psfolder - 'My PowerShell Folder'
+
+    # Folders Paths:
+        # styleh-p - 'StyleGuide Halomaple Path'
+        # stylet-p - 'StyleGuide Teleopti Path'
+
+    # Network:
+        # vpn - 'Enable Teleopti VPN'
+        # vpn/f - 'Disable Teleopti VPN'
+        # vpn? - 'Get VPN Status'
+
+    # Bat:
+        # toa - 'Change toggle mode to All'
+        # tor - 'Change toggle mode to RC'
+        # toc - 'Change toggle mode to Customer'
+        # toggle - 'Current toggle mode'
+        # restore - 'Teleopti Restore to Local'
+        # infratest - 'Teleopti Teleopti InfratestConfig'
+        # fixconfig - 'Teleopti Teleopti FixMyConfigFlow'
+        # mobile - 'Enable mobile access of TeleoptiWFM/Web'
+        # desktop - 'Enable desktop access only of TeleoptiWFM/Web'
+        # azure - 'Connect to Microsoft Azure Virtual Machine'
+
+    # Projects:
+        # fat - 'Run Teleopti Fat Client'
+        # kfat - 'Kill Teleopti Fat Client'
+
+    # Websites:
+        # kanban - 'Kanban Board'
+        # build - 'Teleopti Build Server'
+        # styleguide - 'StyleGuide'
+        # intranet - 'Intranet'
+        # rnd - 'IntranetRND'
+        # slack - 'Slack'
+        # mail - 'Mail'
+        # github - 'Github'
+
+    # Tools:
+        # open [url] - 'Open url in browser'
+        # dict [word] - 'Youdao dict'
+        # can [word] - 'Can I Use'
+        # clipc - 'Clip Current Path'
+
+    # Search:
+        # baidu [keywords] - 'Search keywords using Baidu'
+        # bing [keywords] - 'Search keywords using Bing'
+        # google [keywords] - 'Search keywords using Google'
+        # stackoverflow - 'StackOverflow'
+        # msdn - 'MSDN'
+
+    # Gate:
+        # gate - 'Open Gate'
+
+    # PS:
+        # commands - 'Show Commands'
+        # update - 'Update Module'
+    # "
 }
 
 Start-Up
